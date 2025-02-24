@@ -8,9 +8,14 @@ import "./Home.css";
 const columns = [
   { header: "FOTO", accessor: "image" },
   { header: "NOME", accessor: "name" },
-  { header: "CARGO", accessor: "job" },
-  { header: "DATA DE ADMISSÃO", accessor: "admission_date" },
-  { header: "TELEFONE", accessor: "phone" },
+  { header: "CARGO", accessor: "job", class: "only-desk" },
+  {
+    header: "DATA DE ADMISSÃO",
+    accessor: "admission_date",
+    class: "only-desk",
+  },
+  { header: "TELEFONE", accessor: "phone", class: "only-desk" },
+  { header: ".", accessor: "point", class: "only-mobile" },
 ];
 
 const Home: React.FC = () => {
@@ -41,7 +46,11 @@ const Home: React.FC = () => {
       </section>
 
       <section>
-        <Table columns={columns} data={mapEmployees(employees)} className="table-employess"/>
+        <Table
+          columns={columns}
+          data={mapEmployees(employees)}
+          className="table-employess"
+        />
       </section>
     </div>
   );
@@ -64,7 +73,9 @@ const mapEmployees = (employees: Employee[]) => {
 
     return {
       ...employee,
-      admission_date: new Date(employee.admission_date).toLocaleDateString("pt-BR"),
+      admission_date: new Date(employee.admission_date).toLocaleDateString(
+        "pt-BR"
+      ),
       phone: `+${countryCode} (${areaCode}) ${mainNumber}-${lastPart}`,
     };
   });

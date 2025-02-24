@@ -2,3 +2,17 @@
   text-align: center;
   height: 50px;
 }
+
+.only-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .only-mobile {
+    display: block;
+  }
+
+  .only-desk {
+    display: none;
+  }
+}

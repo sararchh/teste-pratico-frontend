@@ -5,6 +5,7 @@ import { Employee } from "@/types/employees.interface";
 interface Column {
   header: string;
   accessor: string;
+  class?: string;
 }
 
 interface TableProps {
@@ -19,7 +20,7 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
       <thead>
         <tr>
           {columns.map((column) => (
-            <th key={column.accessor}><h2>{column.header}</h2></th>
+            <th key={column.accessor} className={column?.class}><h2>{column.header}</h2></th>
           ))}
         </tr>
       </thead>
@@ -34,7 +35,7 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
           data.map((row) => (
             <tr key={row.id}>
               {columns.map((column) => (
-                <td key={column.accessor as string}>
+                <td key={column.accessor} className={column?.class}>
                   {column.accessor === "image" ? (
                     <img src={row[column.accessor]} alt={row.name} width="50" />
                   ) : (
@@ -42,6 +43,8 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
                   )}
                 </td>
               ))}
+
+              <td className="only-mobile">TESTE</td>
             </tr>
           ))
         )}
