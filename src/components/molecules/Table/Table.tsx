@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Table.css";
 import { Employee } from "@/types/employees.interface";
 
@@ -15,12 +15,20 @@ interface TableProps {
 }
 
 const Table: React.FC<TableProps> = ({ columns, data, className }) => {
+  const [expandedRow, setExpandedRow] = useState<number | null>(null);
+
+  const handleRowClick = (rowId: number) => {
+    setExpandedRow(expandedRow === rowId ? null : rowId);
+  };
+
   return (
     <table className={className}>
       <thead>
         <tr>
           {columns.map((column) => (
-            <th key={column.accessor} className={column?.class}><h2>{column.header}</h2></th>
+            <th key={column.accessor as string} className={column?.class}>
+              <h2>{column.header}</h2>
+            </th>
           ))}
         </tr>
       </thead>
@@ -33,19 +41,41 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
           </tr>
         ) : (
           data.map((row) => (
-            <tr key={row.id}>
-              {columns.map((column) => (
-                <td key={column.accessor} className={column?.class}>
-                  {column.accessor === "image" ? (
-                    <img src={row[column.accessor]} alt={row.name} width="50" />
-                  ) : (
-                    <h3> {row[column.accessor]} </h3>
-                  )}
-                </td>
-              ))}
-
-              <td className="only-mobile">TESTE</td>
-            </tr>
+            <React.Fragment key={row.id}>
+              <tr onClick={() => handleRowClick(row.id)}>
+                {columns.map((column) => (
+                  <td
+                    key={`${row.id}-${column.accessor}`}
+                    className={column?.class}
+                  >
+                    {column.accessor === "image" ? (
+                      <img
+                        src={row[column.accessor]}
+                        alt={row.name}
+                        width="50"
+                      />
+                    ) : (
+                      <h3>{row[column.accessor]}</h3>
+                    )}
+                  </td>
+                ))}
+                <td className="only-mobile">TODO SETA</td>
+              </tr>
+              {expandedRow === row.id && (
+                <tr className="expanded-row">
+                  <td colSpan={columns.length}>
+                    <ul>
+                      {columns.map((column) => (
+                        <li key={`${row.id}-${column.accessor}-detail`}>
+                          <strong>{column.header}:</strong>{" "}
+                          {row[column.accessor]}
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
+                </tr>
+              )}
+            </React.Fragment>
           ))
         )}
       </tbody>

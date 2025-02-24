@@ -19,19 +19,47 @@ const columns = [
 ];
 
 const Home: React.FC = () => {
+  const api = createApi();
   const [employees, setEmployees] = React.useState<Employee[]>([]);
 
   React.useEffect(() => {
-    const api = createApi();
-    api
-      .get("/employees")
-      .then((response) => {
-        setEmployees(response.data);
-      })
-      .catch(() => {
-        alert("Erro ao buscar dados de funcionários");
-      });
+    const fetchData = async () => {
+      const data = await getEmployees();
+      setEmployees(data);
+    };
+    fetchData();
   }, []);
+
+  const getEmployees = async (): Promise<Employee[]> => {
+    try {
+      const response = await api.get("/employees");
+      return response.data;
+    } catch {
+      alert("Erro ao buscar dados de funcionários");
+      return [];
+    }
+  };
+
+  const handleFilterEmployees = async (search: string) => {
+    const data = await getEmployees();
+
+    const filtered = data.filter((employee) =>
+      employee.name.toLowerCase().includes(search.toLowerCase()) ||
+      employee.job.toLowerCase().includes(search.toLowerCase()) ||
+      employee.phone.toLowerCase().includes(search.toLowerCase())
+    );
+    setEmployees(filtered);
+  };
+
+  const debounce = (func: (search: string) => void, wait: number) => {
+    let timeout: NodeJS.Timeout;
+    return (search: string) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func(search), wait);
+    };
+  };
+
+  const debouncedHandleFilterEmployees = debounce(handleFilterEmployees, 500);
 
   return (
     <div className="home">
@@ -40,7 +68,7 @@ const Home: React.FC = () => {
         <Input
           type="text"
           placeholder="Pesquisar"
-          onChange={({ target }) => console.log(target.value)}
+          onChange={({ target }) => debouncedHandleFilterEmployees(target.value)}
           className="input-search"
         />
       </section>
