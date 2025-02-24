@@ -1,10 +1,12 @@
 import "./App.css";
+import Home from "@/pages/Home/Home";
+import Header from "./components/molecules/Header/Header";
 
 function App() {
   return (
     <>
-      <h1>Home</h1>
-      <p>Home</p>
+      <Header />
+      <Home />
     </>
   );
 }
