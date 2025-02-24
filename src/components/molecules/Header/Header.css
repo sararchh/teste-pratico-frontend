@@ -8,7 +8,7 @@ header {
   align-items: center;
 }
 
-.logo {
+header > .logo {
   width: 91px;
   height: 34px;
 }
