@@ -29,8 +29,6 @@ table {
   background-color: var(--color-blue-primary);
 }
 
-
-
 table>thead>tr>th {
   padding: 0 32px;
   text-align: start;
@@ -39,9 +37,8 @@ table>thead>tr>th {
 
 table>thead>tr>th>.point-icon {
   display: flex;
-  align-self: center;
   height: inherit;
-  margin-left: 6px;
+  margin-right: 6px;
 }
 
 table>tbody>tr>td {
@@ -93,6 +90,7 @@ table>tbody>.expanded-row>td>div:last-child {
 @media (max-width: 768px) {
   .only-mobile {
     display: block;
+    justify-self: end;
   }
 
   .only-desk {
