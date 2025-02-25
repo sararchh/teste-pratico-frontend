@@ -38,7 +38,7 @@ table>thead>tr>th {
 table>thead>tr>th>.point-icon {
   display: flex;
   height: inherit;
-  margin-right: 6px;
+  margin-left: 6px;
 }
 
 table>tbody>tr>td {
@@ -90,7 +90,6 @@ table>tbody>.expanded-row>td>div:last-child {
 @media (max-width: 768px) {
   .only-mobile {
     display: block;
-    justify-self: end;
   }
 
   .only-desk {

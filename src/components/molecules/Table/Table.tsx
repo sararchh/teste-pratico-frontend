@@ -23,6 +23,8 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
   const [expandedRows, setExpandedRows] = useState<Set<number>>(new Set());
 
   const handleRowClick = (rowId: number) => {
+    if (window.innerWidth > 768) return;
+
     setExpandedRows((prevExpandedRows) => {
       const newExpandedRows = new Set(prevExpandedRows);
       if (newExpandedRows.has(rowId)) {
@@ -59,64 +61,64 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
         ) : (
           data.map((row) => (
             <React.Fragment key={row.id}>
-            <tr
-              onClick={() => handleRowClick(row.id)}
-              className={expandedRows.has(row.id) ? "expanded" : ""}
-            >
-              {columns.map((column) => (
-                <td
-                  key={`${row.id}-${column.accessor}`}
-                  className={column?.class}
-                >
-                  {column.accessor === "image" ? (
-                    <img
-                      src={row[column.accessor]}
-                      alt={row.name}
-                      width="50"
-                    />
-                  ) : (
-                    <h3>{row[column.accessor]}</h3>
-                  )}
-                </td>
-              ))}
-              <td className="only-mobile">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleRowClick(row.id);
-                  }}
-                >
-                  {expandedRows.has(row.id) ? (
-                    <IoIosArrowUp />
-                  ) : (
-                    <IoIosArrowDown />
-                  )}
-                </button>
-              </td>
-            </tr>
-            {expandedRows.has(row.id) && (
-              <tr className="expanded-row">
-                <td colSpan={columns.length}>
-                  {columns.map((column) => {
-                    if (
-                      column.accessor !== "job" &&
-                      column.accessor !== "admission_date" &&
-                      column.accessor !== "phone"
-                    )
-                      return null;
-                    return (
-                      <div key={`${row.id}-${column.accessor}-detail`}>
-                        <h2>
-                          <strong>{column.header}:</strong>
-                        </h2>
-                        <h3>{row[column.accessor]}</h3>
-                      </div>
-                    );
-                  })}
+              <tr
+                onClick={() => handleRowClick(row.id)}
+                className={expandedRows.has(row.id) ? "expanded" : ""}
+              >
+                {columns.map((column) => (
+                  <td
+                    key={`${row.id}-${column.accessor}`}
+                    className={column?.class}
+                  >
+                    {column.accessor === "image" ? (
+                      <img
+                        src={row[column.accessor]}
+                        alt={row.name}
+                        width="50"
+                      />
+                    ) : (
+                      <h3>{row[column.accessor]}</h3>
+                    )}
+                  </td>
+                ))}
+                <td className="only-mobile">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleRowClick(row.id);
+                    }}
+                  >
+                    {expandedRows.has(row.id) ? (
+                      <IoIosArrowUp />
+                    ) : (
+                      <IoIosArrowDown />
+                    )}
+                  </button>
                 </td>
               </tr>
-            )}
-          </React.Fragment>
+              {expandedRows.has(row.id) && (
+                <tr className="expanded-row">
+                  <td colSpan={columns.length}>
+                    {columns.map((column) => {
+                      if (
+                        column.accessor !== "job" &&
+                        column.accessor !== "admission_date" &&
+                        column.accessor !== "phone"
+                      )
+                        return null;
+                      return (
+                        <div key={`${row.id}-${column.accessor}-detail`}>
+                          <h2>
+                            <strong>{column.header}:</strong>
+                          </h2>
+                          <h3>{row[column.accessor]}</h3>
+                        </div>
+                      );
+                    })}
+                  </td>
+                </tr>
+              )}
+            </React.Fragment>
           ))
         )}
       </tbody>
