@@ -38,7 +38,8 @@ table > thead > tr > th {
 table > thead > tr > th > .point-icon {
   display: flex;
   height: inherit;
-  margin-left: 12px;
+  justify-items: end;
+  margin-right: 9px;
 }
 
 table > tbody > tr > td {
@@ -90,6 +91,10 @@ table > tbody > .expanded-row > td > div:last-child {
 @media (max-width: 768px) {
   .only-mobile {
     display: block;
+  }
+
+  .expand-button {
+    justify-self: right;
   }
 
   .only-desk {

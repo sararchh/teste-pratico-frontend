@@ -84,18 +84,18 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
                     )}
                   </td>
                 ))}
-                <td className={styles["only-mobile"]}>
+                <td className={`${styles["only-mobile"]} ${styles["expand-button"]}`}>
                   <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleRowClick(row.id);
-                    }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleRowClick(row.id);
+                  }}
                   >
-                    {expandedRows.has(row.id) ? (
-                      <IoIosArrowUp />
-                    ) : (
-                      <IoIosArrowDown />
-                    )}
+                  {expandedRows.has(row.id) ? (
+                    <IoIosArrowUp />
+                  ) : (
+                    <IoIosArrowDown />
+                  )}
                   </button>
                 </td>
               </tr>
