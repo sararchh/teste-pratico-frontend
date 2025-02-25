@@ -6,15 +6,15 @@ import { Employee } from "@/types/employees.interface";
 import "./Home.css";
 
 const columns = [
-  { header: "FOTO", accessor: "image" },
-  { header: "NOME", accessor: "name" },
-  { header: "CARGO", accessor: "job", class: "only-desk" },
+  { header: "Foto", accessor: "image" },
+  { header: "Nome", accessor: "name" },
+  { header: "Cargo", accessor: "job", class: "only-desk" },
   {
-    header: "DATA DE ADMISSÃO",
+    header: "Data de admissão",
     accessor: "admission_date",
     class: "only-desk",
   },
-  { header: "TELEFONE", accessor: "phone", class: "only-desk" },
+  { header: "Telefone", accessor: "phone", class: "only-desk" },
   { header: ".", accessor: "point", class: "only-mobile" },
 ];
 

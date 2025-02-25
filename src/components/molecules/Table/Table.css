@@ -11,12 +11,30 @@
   background: transparent;
   border: none;
   height: 32px;
+  cursor: pointer;
+  outline: none;
 }
 
 .only-mobile>button>svg {
   font-size: 32px;
   margin-top: 5px;
   fill: var(--color-blue-primary);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: var(--color-blue-primary);
+}
+
+
+
+table>thead>tr>th {
+  padding: 0 32px;
+  text-align: start;
+  height: 49px;
 }
 
 table>thead>tr>th>.point-icon {
@@ -26,6 +44,52 @@ table>thead>tr>th>.point-icon {
   margin-left: 6px;
 }
 
+table>tbody>tr>td {
+  padding: 0 32px;
+  text-align: start;
+  vertical-align: middle;
+}
+
+table>tbody>tr>td>img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
+
+table>tbody>tr {
+  padding: 0 32px;
+  height: 49px;
+}
+
+table>tbody>tr:not(.expanded) {
+  border-bottom: 1.7px solid var(--color-gray-10);
+}
+
+table>tbody>.expanded-row {
+  word-break: break-word;
+  padding: 0 16px !important;
+}
+
+table>tbody>.expanded-row>td {
+  word-break: break-word;
+  padding: 0 16px !important;
+}
+
+table>tbody>.expanded-row>td>div {
+  display: flex;
+  justify-content: space-between;
+  margin: var(--spacing-regular-16) 0;
+  border-bottom: 1px dotted var(--color-gray-10);
+}
+
+table>tbody>.expanded-row>td>div:first-child {
+  padding-top: var(--spacing-regular-32);
+}
+
+table>tbody>.expanded-row>td>div:last-child {
+  margin-bottom: var(--spacing-regular-28);
+}
+
 @media (max-width: 768px) {
   .only-mobile {
     display: block;
@@ -33,5 +97,17 @@ table>thead>tr>th>.point-icon {
 
   .only-desk {
     display: none;
+  }
+
+  table>thead>tr>th {
+    padding: 0 16px;
+  }
+
+  table>tbody>tr {
+    padding: 0 16px;
+  }
+
+  table>tbody>tr>td {
+    padding: 0 16px;
   }
 }

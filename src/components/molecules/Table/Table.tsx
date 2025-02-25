@@ -33,9 +33,9 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
           {columns.map((column) => (
             <th key={column.accessor as string} className={column?.class}>
               {column.accessor === "point" ? (
-                <TbPointFilled className="point-icon"/>
+                <TbPointFilled className="point-icon" />
               ) : (
-                <h2>{column.header}</h2>
+                <h2>{column?.header?.toLocaleUpperCase()}</h2>
               )}
             </th>
           ))}
@@ -51,7 +51,10 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
         ) : (
           data.map((row) => (
             <React.Fragment key={row.id}>
-              <tr onClick={() => handleRowClick(row.id)}>
+              <tr
+                onClick={() => handleRowClick(row.id)}
+                className={expandedRow === row.id ? "expanded" : ""}
+              >
                 {columns.map((column) => (
                   <td
                     key={`${row.id}-${column.accessor}`}
@@ -86,14 +89,22 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
               {expandedRow === row.id && (
                 <tr className="expanded-row">
                   <td colSpan={columns.length}>
-                    <ul>
-                      {columns.map((column) => (
-                        <li key={`${row.id}-${column.accessor}-detail`}>
-                          <strong>{column.header}:</strong>{" "}
-                          {row[column.accessor]}
-                        </li>
-                      ))}
-                    </ul>
+                    {columns.map((column) => {
+                      if (
+                        column.accessor !== "job" &&
+                        column.accessor !== "admission_date" &&
+                        column.accessor !== "phone"
+                      )
+                        return null;
+                      return (
+                        <div key={`${row.id}-${column.accessor}-detail`}>
+                          <h2>
+                            <strong>{column.header}:</strong>
+                          </h2>
+                          <h3>{row[column.accessor]}</h3>
+                        </div>
+                      );
+                    })}
                   </td>
                 </tr>
               )}
