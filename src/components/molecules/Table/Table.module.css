@@ -38,8 +38,8 @@ table > thead > tr > th {
 table > thead > tr > th > .point-icon {
   display: flex;
   height: inherit;
-  justify-items: end;
-  margin-right: 9px;
+  justify-self: self-end;
+  margin-right: 8px;
 }
 
 table > tbody > tr > td {
