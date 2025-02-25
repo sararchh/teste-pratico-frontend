@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import "./Table.css";
+
 import { Employee } from "@/types/employees.interface";
+
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+
+import { TbPointFilled } from "react-icons/tb";
 
 interface Column {
   header: string;
@@ -27,7 +32,11 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
         <tr>
           {columns.map((column) => (
             <th key={column.accessor as string} className={column?.class}>
-              <h2>{column.header}</h2>
+              {column.accessor === "point" ? (
+                <TbPointFilled className="point-icon"/>
+              ) : (
+                <h2>{column.header}</h2>
+              )}
             </th>
           ))}
         </tr>
@@ -59,7 +68,20 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
                     )}
                   </td>
                 ))}
-                <td className="only-mobile">TODO SETA</td>
+                <td className="only-mobile">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleRowClick(row.id);
+                    }}
+                  >
+                    {expandedRow === row.id ? (
+                      <IoIosArrowUp />
+                    ) : (
+                      <IoIosArrowDown />
+                    )}
+                  </button>
+                </td>
               </tr>
               {expandedRow === row.id && (
                 <tr className="expanded-row">

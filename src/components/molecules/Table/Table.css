@@ -7,6 +7,25 @@
   display: none;
 }
 
+.only-mobile>button {
+  background: transparent;
+  border: none;
+  height: 32px;
+}
+
+.only-mobile>button>svg {
+  font-size: 32px;
+  margin-top: 5px;
+  fill: var(--color-blue-primary);
+}
+
+table>thead>tr>th>.point-icon {
+  display: flex;
+  align-self: center;
+  height: inherit;
+  margin-left: 6px;
+}
+
 @media (max-width: 768px) {
   .only-mobile {
     display: block;

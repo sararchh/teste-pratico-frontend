@@ -64,6 +64,7 @@
 .home>section:nth-of-type(2)>.table-employess>tbody>tr>td {
   padding: 0 32px;
   text-align: start;
+  vertical-align: middle;
 }
 
 .home>section:nth-of-type(2)>.table-employess>tbody>tr>td>img {
