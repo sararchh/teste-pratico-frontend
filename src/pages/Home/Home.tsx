@@ -3,7 +3,7 @@ import { createApi } from "@/services/api";
 import Input from "@/components/atoms/Input/Input";
 import Table from "@/components/molecules/Table/Table";
 import { Employee } from "@/types/employees.interface";
-import "./Home.css";
+import styles from "./Home.module.css";
 
 const columns = [
   { header: "Foto", accessor: "image" },
@@ -62,14 +62,14 @@ const Home: React.FC = () => {
   const debouncedHandleFilterEmployees = debounce(handleFilterEmployees, 500);
 
   return (
-    <div className="home">
+    <div className={styles.home}>
       <section>
         <h1>Funcionários</h1>
         <Input
           type="text"
           placeholder="Pesquisar"
           onChange={({ target }) => debouncedHandleFilterEmployees(target.value)}
-          className="input-search"
+          className={styles.inputSearch}
         />
       </section>
 
@@ -77,7 +77,7 @@ const Home: React.FC = () => {
         <Table
           columns={columns}
           data={mapEmployees(employees)}
-          className="table-employess"
+          className={styles.tableEmployess}
         />
       </section>
     </div>

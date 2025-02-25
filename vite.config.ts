@@ -9,7 +9,11 @@ export default defineConfig({
     host: true,
     port:3000
   },
-  css: {},
+  css: {
+    modules: {
+      localsConvention: 'camelCase', 
+    },
+  },
   plugins: [react()],
   resolve: {
     alias: {

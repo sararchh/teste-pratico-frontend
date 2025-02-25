@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
 import App from './App.tsx'
-import '@/styles/Global.css'
+import '@/styles/Global.module.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

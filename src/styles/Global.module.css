@@ -1,4 +1,4 @@
-@import 'root-variables.css';
+@import 'root-variables.module.css';
 
 * {
   box-sizing: border-box;

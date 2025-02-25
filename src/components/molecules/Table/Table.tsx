@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Table.css";
+import styles from "./Table.module.css";
 
 import { Employee } from "@/types/employees.interface";
 
@@ -37,13 +37,16 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
   };
 
   return (
-    <table className={className}>
+    <table className={`${styles.table} ${className}`}>
       <thead>
         <tr>
           {columns.map((column) => (
-            <th key={column.accessor as string} className={column?.class}>
+            <th
+              key={column.accessor as string}
+              className={` ${styles[column?.class]} `}
+            >
               {column.accessor === "point" ? (
-                <TbPointFilled className="point-icon" />
+                <TbPointFilled className={styles["point-icon"]} />
               ) : (
                 <h2>{column?.header?.toLocaleUpperCase()}</h2>
               )}
@@ -54,7 +57,7 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
       <tbody>
         {data.length === 0 ? (
           <tr>
-            <td colSpan={columns.length} className="no-data">
+            <td colSpan={columns.length} className={styles["no-data"]}>
               <h3>Nenhum dado disponível</h3>
             </td>
           </tr>
@@ -63,12 +66,12 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
             <React.Fragment key={row.id}>
               <tr
                 onClick={() => handleRowClick(row.id)}
-                className={expandedRows.has(row.id) ? "expanded" : ""}
+                className={expandedRows.has(row.id) ? styles["expanded"] : ""}
               >
                 {columns.map((column) => (
                   <td
                     key={`${row.id}-${column.accessor}`}
-                    className={column?.class}
+                    className={styles[column?.class]}
                   >
                     {column.accessor === "image" ? (
                       <img
@@ -81,7 +84,7 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
                     )}
                   </td>
                 ))}
-                <td className="only-mobile">
+                <td className={styles["only-mobile"]}>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -97,7 +100,7 @@ const Table: React.FC<TableProps> = ({ columns, data, className }) => {
                 </td>
               </tr>
               {expandedRows.has(row.id) && (
-                <tr className="expanded-row">
+                <tr className={styles["expanded-row"]}>
                   <td colSpan={columns.length}>
                     {columns.map((column) => {
                       if (
