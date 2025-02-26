@@ -9,28 +9,23 @@
     ],
     "module": "ESNext",
     "outDir": "build",
-
     "rootDirs": [
       "src",
       "tests"
     ],
-    
-    "baseUrl": "src",
-
+    "baseUrl": ".",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "allowJs": true,
     "skipLibCheck": true,
     "noImplicitAny": false,
-    /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    /* Linting */
     "strict": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
@@ -38,7 +33,7 @@
     "incremental": true,
     "paths": {
       "@/*": [
-        "*"
+        "src/*"
       ]
     },
     "plugins": [
@@ -53,7 +48,7 @@
   "include": [
     "src",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
   ],
   "exclude": [
     "node_modules"

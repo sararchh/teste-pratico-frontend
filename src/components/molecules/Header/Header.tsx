@@ -1,11 +1,11 @@
 import React from "react";
 
-import "./Header.module.css";
+import styles from "./Header.module.css";
 import logo from "@/assets/svg/Logo.svg";
 
 const Header: React.FC = () => {
   return (
-    <header>
+    <header className={styles.header}>
       <img className="logo" src={logo} alt="Logo" />
     </header>
   );

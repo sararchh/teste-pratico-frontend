@@ -6,25 +6,25 @@ export default defineConfig({
     port: 3000,
     host: true,
   },
-  preview:{
+  preview: {
     host: true,
-    port:3000
+    port: 3000,
   },
   css: {
     modules: {
-      localsConvention: 'camelCase', 
+      localsConvention: "camelCase",
     },
   },
   plugins: [react()],
   resolve: {
     alias: {
-      '@/': '/src/',
+      "@/": "/src/",
     },
   },
   build: {
-    outDir: 'build',
+    outDir: "build",
     commonjsOptions: {
       transformMixedEsModules: true,
     },
   },
-})
+});
