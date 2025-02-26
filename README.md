@@ -4,7 +4,7 @@
 
 Inicie o servidor `JSON.SERVE` com o seguinte comando:
 ```sh
-yarn db:serve
+yarn db:server
 ```
 
 ## Como rodar em desenvolvimento
@@ -27,6 +27,19 @@ Para rodar a aplicação em produção, siga os seguintes passos:
     ```sh
     yarn preview
     ```
+
+## Como rodar com Docker
+
+Para rodar a aplicação utilizando Docker, siga os seguintes passos:
+
+1. Construa e inicie os contêineres:
+    ```sh
+    docker compose up --build
+    ```
+
+2. Acesse a aplicação no navegador:
+    - Frontend: [http://localhost:3000](http://localhost:3000)
+    - JSON Server: [http://localhost:3333](http://localhost:3333)
 
 ## Variável de Ambiente
 
